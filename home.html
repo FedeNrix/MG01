@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Home - MG01</title>
 
   <!-- Anti-cache -->
@@ -10,28 +10,69 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
 
-  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
   <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      background: #000;
-      color: #fff;
+    html,body { height:100%; margin:0; }
+    body { margin:0; background:#000; color:#fff; font-family:Arial, sans-serif; }
+
+    /* Intro full-screen con GIF local */
+    #intro {
+      position: fixed;
+      inset: 0;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:black;
+      z-index:9999;
+    }
+    #intro img {
+      max-width:100%;
+      max-height:100%;
+      object-fit:contain;
+      /* animación CSS opcional: zoom lento */
+      animation: introZoom 10s linear forwards;
+    }
+    @keyframes introZoom {
+      0% { transform: scale(1); }
+      95% { transform: scale(5); }
+      100% { transform: scale(5); opacity:0; }
     }
 
-    h1 {
-      text-align: center;
+    /* Contenido principal (oculto hasta terminar la intro) */
+    #main {
+      display:none;
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
     }
   </style>
 </head>
 <body>
-  <h1>¡Bienvenido a MG01!</h1>
+  <!-- intro GIF local -->
+  <div id="intro">
+    <img id="introGif" src="images/intro.gif?v=1" alt="Intro">
+  </div>
+
+  <!-- contenido principal -->
+  <div id="main">
+    <h1>¡Bienvenido a MG01!</h1>
+    <p>Tu contenido aquí...</p>
+  </div>
+
+  <script>
+    // Oculta el intro después de 10s y muestra el main
+    window.addEventListener('load', () => {
+      const intro = document.getElementById('intro');
+      const main = document.getElementById('main');
+      // asegúrate que el GIF se muestre; si necesitás más tiempo, cambia 10000
+      setTimeout(() => {
+        intro.style.display = 'none';
+        main.style.display = 'flex';
+      }, 10000);
+    });
+  </script>
 </body>
 </html>
