@@ -1,68 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>La Casa de Tu Vieja - Login</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Login - MG01</title>
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
   <style>
-    html, body { height: 100%; margin: 0; font-family: Arial, sans-serif; }
+    html, body { height:100%; margin:0; }
     body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      height: 100vh;
-      /* Fondo multicolor animado */
-      background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
-      background-size: 1400% 1400%;
-      animation: gradientBG 10s ease infinite;
+      margin:0;
+      height:100vh;
+      font-family: Arial, sans-serif;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      overflow:hidden;
+      background:#000;
     }
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    #bgGif {
+      position: fixed;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:-1;
     }
-
-    h1 {
-      text-align: center;
-      margin-top: 20px;
-      color: white;
-    }
-    h1 img { max-width: 100%; height: auto; vertical-align: middle; }
-
-    p img {
-      display: block;
-      -webkit-user-select: none;
-      margin: 20px auto;
-      background-color: hsl(0, 0%, 90%);
-      max-width: 90%;
-      height: auto;
-    }
-
     .login-container {
       background: rgba(0,0,0,0.6);
-      padding: 20px;
-      border-radius: 10px;
-      width: 320px;
-      text-align: center;
-      color: #fff;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-      z-index: 1;
+      padding:30px;
+      border-radius:10px;
+      text-align:center;
+      width:320px;
+      box-shadow:0 0 15px rgba(0,0,0,0.5);
+      color:#fff;
+      z-index:1;
+      position:relative;
     }
-    input { display: block; width: 90%; margin: 10px auto; padding: 10px; border-radius: 6px; border: none; }
-    button { background: #ff6600; color: #fff; border: none; padding: 10px; width: 95%; border-radius: 6px; cursor: pointer; }
-    button:hover { filter: brightness(1.05); }
+    input { display:block; width:90%; margin:10px auto; padding:10px; border-radius:6px; border:none; }
+    button { background:#ff6600; color:#fff; border:none; padding:10px; width:95%; border-radius:6px; cursor:pointer; }
+    button:hover { filter:brightness(1.05); }
   </style>
 </head>
 <body>
-  <h1>
-    Bienvenido al Mundo Gooner
-    <img src="https://i.redd.it/if8x2lq0d58d1.gif" alt="GIF principal">
-  </h1>
-
-  <p>
-    <img src="https://imagex1.sx.cdn.live/images/pinporn/2018/10/19/20108579.gif?width=460" alt="GIF secundario">
-  </p>
+  <!-- GIF de fondo login -->
+  <img id="bgGif" style="display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);" 
+       src="https://cdn05.iwantclips.com/uploads/contents/videos/8906/c7671635e877bc16e9cd967218a42010.gif" 
+       alt="Acceso">
 
   <div class="login-container">
     <h2>Iniciar Sesión</h2>
@@ -72,10 +57,10 @@
   </div>
 
   <script>
-    function login() {
+    function login(){
       const u = document.getElementById('username').value.trim();
       const p = document.getElementById('password').value;
-      if (u === 'admin' && p === '1234') {
+      if(u === 'admin' && p === '1234'){
         location.href = 'home.html';
       } else {
         location.href = 'error.html';
