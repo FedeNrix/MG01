@@ -37,11 +37,11 @@
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
-      animation: introZoom 10s linear forwards; /* duración 10s */
+      animation: introZoom 9s linear forwards; /* duración 9s */
     }
     @keyframes introZoom {
       0% { transform: scale(1); }
-      100% { transform: scale(5); } /* escala máxima al final, sin desvanecerse */
+      100% { transform: scale(5); } /* escala máxima al final */
     }
 
     /* Contenido principal oculto hasta terminar la intro */
@@ -79,29 +79,31 @@
     <p>
       <img src="https://imagex1.sx.cdn.live/images/pinporn/2018/10/19/20108579.gif?width=460" alt="GIF secundario">
     </p>
-
-    <div>
-      <h2>¡Estás dentro de MG01!</h2>
-      <p>Tu contenido aquí...</p>
-    </div>
   </div>
 
   <script>
     window.addEventListener('load', () => {
-      const introGif = document.querySelector('#intro img');
       const intro = document.getElementById('intro');
       const main = document.getElementById('main');
 
-      // Reiniciar la animación del GIF de entrada
-      introGif.style.animation = 'none';
-      introGif.offsetHeight; // fuerza reflow
-      introGif.style.animation = 'introZoom 10s linear forwards';
+      // Mostrar el intro solo si no se ha mostrado en esta sesión
+      if(!sessionStorage.getItem('introShown')){
+        sessionStorage.setItem('introShown', 'true');
 
-      // Ocultar intro después de 10 segundos y mostrar main
-      setTimeout(() => {
+        const introGif = document.querySelector('#intro img');
+        introGif.style.animation = 'none'; // reiniciar animación
+        introGif.offsetHeight; // fuerza reflow
+        introGif.style.animation = 'introZoom 9s linear forwards';
+
+        setTimeout(() => {
+          intro.style.display = 'none';
+          main.style.display = 'block';
+        }, 9000);
+      } else {
+        // Si ya se mostró en esta sesión, ocultar intro y mostrar main inmediatamente
         intro.style.display = 'none';
         main.style.display = 'block';
-      }, 10000);
+      }
     });
   </script>
 
