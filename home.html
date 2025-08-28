@@ -5,21 +5,16 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Home - MG01</title>
 
-  <!-- Anti-cache -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
   <style>
-    html,body { height:100%; margin:0; }
+    html, body { height:100%; margin:0; }
     body { margin:0; background:#000; color:#fff; font-family:Arial, sans-serif; }
 
-    /* Intro full-screen con GIF local */
+    /* Intro full-screen con GIF */
     #intro {
       position: fixed;
-      inset: 0;
+      inset:0;
       display:flex;
       justify-content:center;
       align-items:center;
@@ -38,9 +33,8 @@
       100% { transform: scale(5); opacity:0; }
     }
 
-    /* Contenido principal (oculto hasta terminar la intro) */
     #main {
-      display:none; /* ✅ corregido */
+      display:none;
       height:100vh;
       justify-content:center;
       align-items:center;
@@ -49,25 +43,22 @@
   </style>
 </head>
 <body>
-  <!-- intro GIF local -->
   <div id="intro">
-    <img id="introGif" src="images/intro.gif?v=1" alt="Intro">
+    <img src="https://cdn05.iwantclips.com/uploads/contents/videos/8906/c7671635e877bc16e9cd967218a42010.gif" alt="Intro">
   </div>
 
-  <!-- contenido principal -->
   <div id="main">
     <h1>¡Bienvenido a MG01!</h1>
     <p>Tu contenido aquí...</p>
   </div>
 
   <script>
-    // Oculta el intro después de 10s y muestra el main
     window.addEventListener('load', () => {
       const intro = document.getElementById('intro');
       const main = document.getElementById('main');
       setTimeout(() => {
         intro.style.display = 'none';
-        main.style.display = 'flex'; // ✅ ahora sí se activa correctamente
+        main.style.display = 'flex';
       }, 10000);
     });
   </script>
