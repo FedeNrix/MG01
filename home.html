@@ -12,7 +12,6 @@
       align-items: center;
       justify-content: flex-start;
       height: 100vh;
-      /* Fondo multicolor animado */
       background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
       background-size: 1400% 1400%;
       animation: gradientBG 10s ease infinite;
@@ -24,41 +23,79 @@
       100% { background-position: 0% 50%; }
     }
 
-    h1 { text-align: center; margin-top: 20px; color: white; }
-    h1 img { max-width: 100%; height: auto; vertical-align: middle; }
-
-    p img {
-      display: block;
-      -webkit-user-select: none;
-      margin: 20px auto;
-      background-color: hsl(0, 0%, 90%);
-      max-width: 90%;
-      height: auto;
+    /* GIF de entrada con zoom */
+    #intro {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: black;
+      z-index: 9999;
+    }
+    #intro img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      animation: introZoom 10s linear forwards;
+    }
+    @keyframes introZoom {
+      0% { transform: scale(1); }
+      95% { transform: scale(5); }
+      100% { transform: scale(5); opacity: 0; }
     }
 
-    #main-content {
+    /* Contenido principal oculto hasta terminar la intro */
+    #main {
+      display: none;
       text-align: center;
       color: white;
-      z-index: 1;
       margin-top: 20px;
+    }
+
+    h1 img, p img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 10px auto;
+      -webkit-user-select: none;
+      background-color: hsl(0, 0%, 90%);
     }
   </style>
 </head>
 <body>
 
-  <h1>
-    Bienvenido al Mundo Gooner
-    <img src="https://i.redd.it/if8x2lq0d58d1.gif" alt="GIF principal">
-  </h1>
-
-  <p>
-    <img src="https://imagex1.sx.cdn.live/images/pinporn/2018/10/19/20108579.gif?width=460" alt="GIF secundario">
-  </p>
-
-  <div id="main-content">
-    <h2>¡Estás dentro de MG01!</h2>
-    <p>Tu contenido aquí...</p>
+  <!-- GIF de entrada con zoom -->
+  <div id="intro">
+    <img src="https://el.phncdn.com/pics/gifs/014/844/552/(m=ldpwiqacxtE_Ai)(mh=ht9SNtCdtrF2Smov)14844552b.gif" alt="Intro">
   </div>
+
+  <!-- Contenido principal -->
+  <div id="main">
+    <h1>
+      Bienvenido al Mundo Gooner
+      <img src="https://i.redd.it/if8x2lq0d58d1.gif" alt="GIF principal">
+    </h1>
+
+    <p>
+      <img src="https://imagex1.sx.cdn.live/images/pinporn/2018/10/19/20108579.gif?width=460" alt="GIF secundario">
+    </p>
+
+    <div>
+      <h2>¡Estás dentro de MG01!</h2>
+      <p>Tu contenido aquí...</p>
+    </div>
+  </div>
+
+  <script>
+    // Ocultar intro después de 10 segundos y mostrar main
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('intro').style.display = 'none';
+        document.getElementById('main').style.display = 'block';
+      }, 10000); // duración del zoom del GIF
+    });
+  </script>
 
 </body>
 </html>
