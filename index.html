@@ -5,67 +5,55 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Login - MG01</title>
 
-  <!-- Anti-cache -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-
-  <!-- favicon (pon favicon.ico en la raíz del repo) -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
   <style>
-    html,body { height:100%; margin:0; }
+    html, body { height:100%; margin:0; }
     body {
-      margin: 0;
-      height: 100vh;
+      margin:0;
+      height:100vh;
       font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      background: #000;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      overflow:hidden;
+      background:#000;
     }
-
-    /* GIF de fondo (local) */
     #bgGif {
       position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* cover o contain según prefieras */
-      z-index: -1;
+      inset:0;
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      z-index:-1;
     }
-
     .login-container {
       background: rgba(0,0,0,0.6);
-      padding: 30px;
-      border-radius: 10px;
-      text-align: center;
-      width: 320px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-      color: #fff;
-      z-index: 1;
-      position: relative;
+      padding:30px;
+      border-radius:10px;
+      text-align:center;
+      width:320px;
+      box-shadow:0 0 15px rgba(0,0,0,0.5);
+      color:#fff;
+      z-index:1;
+      position:relative;
     }
-
     input { display:block; width:90%; margin:10px auto; padding:10px; border-radius:6px; border:none; }
-    button {
-      background:#ff6600; color:#fff; border:none; padding:10px; width:95%; border-radius:6px; cursor:pointer;
-    }
+    button { background:#ff6600; color:#fff; border:none; padding:10px; width:95%; border-radius:6px; cursor:pointer; }
     button:hover { filter:brightness(1.05); }
-    #error { color:#ff5252; display:none; margin-top:8px; }
   </style>
 </head>
 <body>
-  <!-- GIF de fondo local -->
-  <img id="bgGif" src="images/bg.gif?v=1" alt="fondo">
+  <!-- GIF de fondo login -->
+  <img id="bgGif" style="display: block;-webkit-user-select: none;margin: auto;background-color: hsl(0, 0%, 90%);" 
+       src="https://el.phncdn.com/pics/gifs/014/844/552/(m=ldpwiqacxtE_Ai)(mh=ht9SNtCdtrF2Smov)14844552b.gif" 
+       alt="Acceso">
 
   <div class="login-container">
     <h2>Iniciar Sesión</h2>
     <input id="username" type="text" placeholder="Usuario" autocomplete="username">
     <input id="password" type="password" placeholder="Contraseña" autocomplete="current-password">
     <button onclick="login()">Entrar</button>
-    <p id="error">Usuario o contraseña incorrectos</p>
   </div>
 
   <script>
@@ -73,10 +61,8 @@
       const u = document.getElementById('username').value.trim();
       const p = document.getElementById('password').value;
       if(u === 'admin' && p === '1234'){
-        // login correcto
         location.href = 'home.html';
       } else {
-        // login incorrecto -> redirigir a error.html
         location.href = 'error.html';
       }
     }
