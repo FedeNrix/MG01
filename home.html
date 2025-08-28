@@ -37,11 +37,11 @@
       max-width: 100%;
       max-height: 100%;
       object-fit: contain;
-      animation: introZoom 11s linear forwards; /* duración 11s */
+      animation: introZoom 10s linear forwards; /* duración 10s */
     }
     @keyframes introZoom {
       0% { transform: scale(1); }
-      100% { transform: scale(5); } /* alcanza escala máxima y no se desvanece */
+      100% { transform: scale(5); } /* escala máxima al final, sin desvanecerse */
     }
 
     /* Contenido principal oculto hasta terminar la intro */
@@ -87,12 +87,21 @@
   </div>
 
   <script>
-    // Ocultar intro después de 11 segundos y mostrar main
     window.addEventListener('load', () => {
+      const introGif = document.querySelector('#intro img');
+      const intro = document.getElementById('intro');
+      const main = document.getElementById('main');
+
+      // Reiniciar la animación del GIF de entrada
+      introGif.style.animation = 'none';
+      introGif.offsetHeight; // fuerza reflow
+      introGif.style.animation = 'introZoom 10s linear forwards';
+
+      // Ocultar intro después de 10 segundos y mostrar main
       setTimeout(() => {
-        document.getElementById('intro').style.display = 'none';
-        document.getElementById('main').style.display = 'block';
-      }, 11000); // duración 11 segundos
+        intro.style.display = 'none';
+        main.style.display = 'block';
+      }, 10000);
     });
   </script>
 
