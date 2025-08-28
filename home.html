@@ -30,7 +30,6 @@
       max-width:100%;
       max-height:100%;
       object-fit:contain;
-      /* animación CSS opcional: zoom lento */
       animation: introZoom 10s linear forwards;
     }
     @keyframes introZoom {
@@ -41,9 +40,8 @@
 
     /* Contenido principal (oculto hasta terminar la intro) */
     #main {
-      display:none;
+      display:none; /* ✅ corregido */
       height:100vh;
-      display:flex;
       justify-content:center;
       align-items:center;
       flex-direction:column;
@@ -67,10 +65,9 @@
     window.addEventListener('load', () => {
       const intro = document.getElementById('intro');
       const main = document.getElementById('main');
-      // asegúrate que el GIF se muestre; si necesitás más tiempo, cambia 10000
       setTimeout(() => {
         intro.style.display = 'none';
-        main.style.display = 'flex';
+        main.style.display = 'flex'; // ✅ ahora sí se activa correctamente
       }, 10000);
     });
   </script>
