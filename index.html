@@ -6,26 +6,26 @@
   <title>Login - MG01</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
       height: 100vh;
+      font-family: Arial, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
-
-      /* Fondo GIF */
-      background: url("https://cdn05.iwantclips.com/uploads/contents/videos/8906/c7671635e877bc16e9cd967218a42010.gif") no-repeat center center fixed;
-      background-size: cover;
+      overflow: hidden;
+      background: black;
     }
 
     .login-container {
-      background: rgba(0,0,0,0.6); /* Semi-transparente para que se vea el GIF */
+      background: rgba(0,0,0,0.6);
       padding: 30px;
       border-radius: 10px;
       text-align: center;
       width: 300px;
       box-shadow: 0 0 15px rgba(0,0,0,0.5);
       color: #fff;
+      z-index: 2;
+      position: relative;
     }
 
     input {
@@ -50,9 +50,23 @@
     button:hover { background: #e65c00; }
 
     #error { color: #ff5252; display: none; }
+
+    /* GIF de error */
+    #errorGif {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 5;
+      background: black;
+    }
   </style>
 </head>
 <body>
+  <!-- Caja de login -->
   <div class="login-container">
     <h2>Iniciar Sesión</h2>
     <input type="text" id="username" placeholder="Usuario">
@@ -61,14 +75,27 @@
     <p id="error">Usuario o contraseña incorrectos</p>
   </div>
 
+  <!-- GIF de error personalizado -->
+  <img id="errorGif" src="https://imagex1.sx.cdn.live/images/pinporn/2022/11/29/28475924.gif?width=460" alt="Error">
+
   <script>
     function login() {
       const u = document.getElementById("username").value.trim();
       const p = document.getElementById("password").value;
+      const error = document.getElementById("error");
+      const gif = document.getElementById("errorGif");
+
       if (u === "admin" && p === "1234") {
         window.location.href = "home.html";
       } else {
-        document.getElementById("error").style.display = "block";
+        // Mostrar mensaje de error
+        error.style.display = "block";
+
+        // Mostrar GIF de error por 3 segundos
+        gif.style.display = "block";
+        setTimeout(() => {
+          gif.style.display = "none";
+        }, 3000);
       }
     }
   </script>
