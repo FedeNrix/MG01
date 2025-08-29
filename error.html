@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Error - MG01</title>
-
-  <!-- Anti-cache -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error</title>
   <style>
-    html,body{ height:100%; margin:0; }
-    body{ background:#000; display:flex; align-items:center; justify-content:center; flex-direction:column; }
-    #errorGif{ max-width:95%; max-height:85%; object-fit:contain; display:block; margin:0 auto; }
-    h2{ color:#ff5252; margin-top:12px; }
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+      margin: auto;
+    }
   </style>
 </head>
 <body>
-  <img id="errorGif" src="images/error.gif?v=1" alt="Error">
-  <h2>Usuario o contraseña incorrectos</h2>
-
-  <script>
-    // opcional: volver al login en 5 segundos
-    setTimeout(() => {
-      window.location.href = 'index.html';
-    }, 5000);
-  </script>
+  <img 
+    src="https://el.phncdn.com/pics/gifs/049/603/881/(m=ldpwiqacxtE_Ai)(mh=sr7YtplK79zmB9pH)49603881b.gif" 
+    alt="Error GIF">
 </body>
 </html>
