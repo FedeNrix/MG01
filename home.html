@@ -2,46 +2,102 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
   <style>
     body {
-      background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
-      background-size: 1400% 1400%;
-      animation: gradient 30s ease infinite;
+      margin: 0;
+      padding: 0;
+      background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
       text-align: center;
     }
 
-    @keyframes gradient {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
+    /* Estilo del contenedor del GIF inicial */
+    #intro {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      overflow: hidden;
     }
 
-    img {
+    #intro img {
+      max-width: 100%;
+      max-height: 100%;
+      transform: scale(1);
+      animation: zoomIn 9s forwards;
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(1.5);
+      }
+    }
+
+    #content {
+      display: none;
+      padding: 20px;
+    }
+
+    /* Imagen con sonido */
+    #soundImage {
       cursor: pointer;
-      display: block;
-      margin: auto;
+      transition: transform 0.2s;
+    }
+
+    #soundImage:active {
+      transform: scale(0.95);
     }
   </style>
 </head>
 <body>
-  <h1>Bienvenido al Mundo Gooner</h1>
+  <!-- Intro GIF -->
+  <div id="intro">
+    <img src="https://el.phncdn.com/pics/gifs/014/844/552/(m=ldpwiqacxtE_Ai)(mh=ht9SNtCdtrF2Smov)14844552b.gif" alt="Intro GIF">
+  </div>
 
-  <!-- Imagen -->
-  <img 
-    src="https://es.porndiff.com/diff/actors/angela-white-9b19a3735d958a290d183a68d1182b06.png" 
-    width="537" 
-    height="969" 
-    id="clickImage">
-
-  <!-- Audio -->
-  <audio id="sound" src="people129.mp3"></audio>
+  <!-- Contenido principal -->
+  <div id="content">
+    <h1>Bienvenido</h1>
+    <p>Toca la imagen para reproducir un sonido:</p>
+    <img 
+      id="soundImage" 
+      src="https://es.porndiff.com/diff/actors/angela-white-9b19a3735d958a290d183a68d1182b06.png" 
+      width="300" 
+      alt="Imagen con sonido">
+    
+    <audio id="sound" src="people129.mp3"></audio>
+  </div>
 
   <script>
-    const img = document.getElementById("clickImage");
+    // Verificar si ya se mostró la intro
+    if (!sessionStorage.getItem("introShown")) {
+      setTimeout(() => {
+        document.getElementById("intro").style.display = "none";
+        document.getElementById("content").style.display = "block";
+        sessionStorage.setItem("introShown", "true");
+      }, 9000); // 9 segundos
+    } else {
+      document.getElementById("intro").style.display = "none";
+      document.getElementById("content").style.display = "block";
+    }
+
+    // Reproducir sonido al hacer click en la imagen
+    const soundImage = document.getElementById("soundImage");
     const sound = document.getElementById("sound");
 
-    img.addEventListener("click", () => {
+    soundImage.addEventListener("click", () => {
       sound.currentTime = 0; // reinicia el audio
       sound.play();
     });
