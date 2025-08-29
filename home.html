@@ -3,104 +3,109 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
+  <title>Home - MG01</title>
   <style>
+    html, body { height: 100%; margin: 0; font-family: Arial, sans-serif; }
     body {
-      margin: 0;
-      padding: 0;
-      background: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
+      background-size: 1400% 1400%;
+      animation: gradientBG 10s ease infinite;
+      overflow-x: hidden;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
-    /* Estilo del contenedor del GIF inicial */
+    /* GIF de entrada con zoom */
     #intro {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #000;
+      inset: 0;
       display: flex;
       justify-content: center;
       align-items: center;
+      background: black;
       z-index: 9999;
-      overflow: hidden;
     }
-
     #intro img {
       max-width: 100%;
       max-height: 100%;
-      transform: scale(1);
-      animation: zoomIn 9s forwards;
+      object-fit: contain;
+      animation: introZoom 9s linear forwards; /* duración 9s */
+    }
+    @keyframes introZoom {
+      0% { transform: scale(1); }
+      100% { transform: scale(5); } /* escala máxima al final */
     }
 
-    @keyframes zoomIn {
-      from {
-        transform: scale(1);
-      }
-      to {
-        transform: scale(1.5);
-      }
-    }
-
-    #content {
+    /* Contenido principal oculto hasta terminar la intro */
+    #main {
       display: none;
-      padding: 20px;
+      text-align: center;
+      color: white;
+      margin-top: 20px;
     }
 
-    /* Imagen con sonido */
-    #soundImage {
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-
-    #soundImage:active {
-      transform: scale(0.95);
+    h1 img, p img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 10px auto;
+      -webkit-user-select: none;
+      background-color: hsl(0, 0%, 90%);
     }
   </style>
 </head>
 <body>
-  <!-- Intro GIF -->
+
+  <!-- GIF de entrada con zoom -->
   <div id="intro">
-    <img src="https://el.phncdn.com/pics/gifs/014/844/552/(m=ldpwiqacxtE_Ai)(mh=ht9SNtCdtrF2Smov)14844552b.gif" alt="Intro GIF">
+    <img src="https://el.phncdn.com/pics/gifs/014/844/552/(m=ldpwiqacxtE_Ai)(mh=ht9SNtCdtrF2Smov)14844552b.gif" alt="Intro">
   </div>
 
   <!-- Contenido principal -->
-  <div id="content">
-    <h1>Bienvenido</h1>
-    <p>Toca la imagen para reproducir un sonido:</p>
-    <img 
-      id="soundImage" 
-      src="https://es.porndiff.com/diff/actors/angela-white-9b19a3735d958a290d183a68d1182b06.png" 
-      width="300" 
-      alt="Imagen con sonido">
-    
-    <audio id="sound" src="people129.mp3"></audio>
+  <div id="main">
+    <h1>
+      Bienvenido al Mundo Gooner
+      <img src="https://i.redd.it/if8x2lq0d58d1.gif" alt="GIF principal">
+    </h1>
+
+    <p>
+      <img src="https://imagex1.sx.cdn.live/images/pinporn/2018/10/19/20108579.gif?width=460" alt="GIF secundario">
+    </p>
   </div>
 
   <script>
-    // Verificar si ya se mostró la intro
-    if (!sessionStorage.getItem("introShown")) {
-      setTimeout(() => {
-        document.getElementById("intro").style.display = "none";
-        document.getElementById("content").style.display = "block";
-        sessionStorage.setItem("introShown", "true");
-      }, 9000); // 9 segundos
-    } else {
-      document.getElementById("intro").style.display = "none";
-      document.getElementById("content").style.display = "block";
-    }
+    window.addEventListener('load', () => {
+      const intro = document.getElementById('intro');
+      const main = document.getElementById('main');
 
-    // Reproducir sonido al hacer click en la imagen
-    const soundImage = document.getElementById("soundImage");
-    const sound = document.getElementById("sound");
+      // Mostrar el intro solo si no se ha mostrado en esta sesión
+      if(!sessionStorage.getItem('introShown')){
+        sessionStorage.setItem('introShown', 'true');
 
-    soundImage.addEventListener("click", () => {
-      sound.currentTime = 0; // reinicia el audio
-      sound.play();
+        const introGif = document.querySelector('#intro img');
+        introGif.style.animation = 'none'; // reiniciar animación
+        introGif.offsetHeight; // fuerza reflow
+        introGif.style.animation = 'introZoom 9s linear forwards';
+
+        setTimeout(() => {
+          intro.style.display = 'none';
+          main.style.display = 'block';
+        }, 9000);
+      } else {
+        // Si ya se mostró en esta sesión, ocultar intro y mostrar main inmediatamente
+        intro.style.display = 'none';
+        main.style.display = 'block';
+      }
     });
   </script>
+
 </body>
 </html>
