@@ -8,28 +8,71 @@
     body {
       margin: 0;
       padding: 0;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr); /* 3 columnas */
-      grid-template-rows: repeat(3, 1fr);    /* 3 filas */
       width: 100vw;
       height: 100vh;
-      overflow: hidden;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 4 columnas */
+      grid-template-rows: repeat(3, 1fr);    /* 3 filas */
+      gap: 0;
     }
 
     img {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* Ajusta la imagen al espacio sin deformarse */
+      object-fit: cover;
+      display: block;
+    }
+
+    /* GIF 1 ocupa toda la parte de abajo (dos columnas y una fila) */
+    .gif1 {
+      grid-column: 2 / span 2; 
+      grid-row: 3 / span 1;    
+    }
+
+    /* GIF 2 arriba a la derecha */
+    .gif2 {
+      grid-column: 4 / span 1;
+      grid-row: 1 / span 1;
+    }
+
+    /* GIF 3 pequeño arriba centro-izq */
+    .gif3 {
+      grid-column: 2 / span 1;
+      grid-row: 1 / span 1;
+    }
+
+    /* GIF 4 ocupa dos filas verticales a la derecha */
+    .gif4 {
+      grid-column: 4 / span 1;
+      grid-row: 2 / span 2;
+    }
+
+    /* GIF 5 grande a la izquierda, ocupa dos filas */
+    .gif5 {
+      grid-column: 1 / span 1;
+      grid-row: 2 / span 2;
+    }
+
+    /* GIF 6 arriba centro-derecha */
+    .gif6 {
+      grid-column: 3 / span 1;
+      grid-row: 1 / span 1;
+    }
+
+    /* GIF 7 vertical entre 3 y 6 */
+    .gif7 {
+      grid-column: 2 / span 1;
+      grid-row: 2 / span 1;
     }
   </style>
 </head>
 <body>
-  <img src="https://el.phncdn.com/pics/gifs/049/603/881/(m=ldpwiqacxtE_Ai)(mh=sr7YtplK79zmB9pH)49603881b.gif" alt="GIF 1">
-  <img src="https://el.phncdn.com/pics/gifs/043/642/731/(m=ldpwiqacxtE_Ai)(mh=Ttcrx9eiIz7f9fMS)43642731b.gif" alt="GIF 2">
-  <img src="https://www.webcampornohd.com/wp-content/uploads/2015/03/mujeres-tetonas.gif" alt="GIF 3">
-  <img src="https://entangada.com/wp-content/uploads/2023/03/Los-mejores-culos-Gifs-41-1.gif" alt="GIF 4">
-  <img src="https://myteenwebcam.com/fapp/gifs/bfc7353d486c475aee051a9968569630.gif" alt="GIF 5">
-  <img src="https://i.redd.it/jfp4h8xezc9e1.gif" alt="GIF 6">
-  <img src="https://i.redd.it/hz9e1aqd6koa1.gif" alt="GIF 7">
+  <img class="gif1" src="https://el.phncdn.com/pics/gifs/049/603/881/(m=ldpwiqacxtE_Ai)(mh=sr7YtplK79zmB9pH)49603881b.gif">
+  <img class="gif2" src="https://el.phncdn.com/pics/gifs/043/642/731/(m=ldpwiqacxtE_Ai)(mh=Ttcrx9eiIz7f9fMS)43642731b.gif">
+  <img class="gif3" src="https://www.webcampornohd.com/wp-content/uploads/2015/03/mujeres-tetonas.gif">
+  <img class="gif4" src="https://entangada.com/wp-content/uploads/2023/03/Los-mejores-culos-Gifs-41-1.gif">
+  <img class="gif5" src="https://myteenwebcam.com/fapp/gifs/bfc7353d486c475aee051a9968569630.gif">
+  <img class="gif6" src="https://i.redd.it/jfp4h8xezc9e1.gif">
+  <img class="gif7" src="https://i.redd.it/hz9e1aqd6koa1.gif">
 </body>
 </html>
