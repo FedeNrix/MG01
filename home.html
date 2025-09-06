@@ -32,7 +32,7 @@
       align-items: center;
       background: black;
       z-index: 9999;
-      animation: fadeOut 9s linear forwards; /* se desvanece solo */
+      animation: fadeOut 9s linear forwards;
     }
     #intro img {
       width: 100%;
@@ -41,20 +41,20 @@
       animation: zoomFade 9s linear forwards;
     }
 
-    /* Animación zoom + desvanecimiento */
+    /* Animación zoom + fade */
     @keyframes zoomFade {
-      0%   { transform: scale(1); opacity: 1; }
-      70%  { transform: scale(2); opacity: 1; }
-      100% { transform: scale(5); opacity: 0; }
+      0%   { transform: scale(1);   opacity: 1; }
+      75%  { transform: scale(4);   opacity: 1; }   /* hasta el 75% solo zoom */
+      100% { transform: scale(5);   opacity: 0; }   /* últimos segundos fade */
     }
 
-    /* El contenedor del intro también se desvanece */
     @keyframes fadeOut {
       0%   { opacity: 1; }
+      75%  { opacity: 1; }  /* mantiene opaco hasta el 75% */
       100% { opacity: 0; }
     }
 
-    /* Contenido principal visible siempre */
+    /* Contenido detrás */
     #main {
       text-align: center;
       color: white;
@@ -75,12 +75,12 @@
 </head>
 <body>
 
-  <!-- Intro que se desvanece -->
+  <!-- Intro que hace zoom y luego se desvanece -->
   <div id="intro">
     <img src="https://el.phncdn.com/pics/gifs/014/844/552/(m=ldpwiqacxtE_Ai)(mh=ht9SNtCdtrF2Smov)14844552b.gif" alt="Intro">
   </div>
 
-  <!-- Contenido principal (siempre está detrás) -->
+  <!-- Contenido principal -->
   <div id="main">
     <h1>
       Bienvenido al Mundo Gooner
@@ -97,10 +97,7 @@
       const intro = document.getElementById('intro');
       if(!sessionStorage.getItem('introShown')){
         sessionStorage.setItem('introShown', 'true');
-
-        setTimeout(() => {
-          intro.style.display = 'none'; // se elimina después de la animación
-        }, 9000);
+        setTimeout(() => { intro.style.display = 'none'; }, 9000);
       } else {
         intro.style.display = 'none';
       }
