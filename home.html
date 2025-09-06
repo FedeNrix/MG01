@@ -23,7 +23,7 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* Intro */
+    /* Intro encima del contenido */
     #intro {
       position: fixed;
       inset: 0;
@@ -32,27 +32,35 @@
       align-items: center;
       background: black;
       z-index: 9999;
+      animation: fadeOut 9s linear forwards; /* se desvanece solo */
     }
     #intro img {
       width: 100%;
       height: 100%;
-      object-fit: cover; /* el GIF cubre toda la pantalla */
-      animation: introAnim 9s linear forwards;
+      object-fit: cover;
+      animation: zoomFade 9s linear forwards;
     }
 
-    /* Animación: zoom + fade out */
-    @keyframes introAnim {
+    /* Animación zoom + desvanecimiento */
+    @keyframes zoomFade {
       0%   { transform: scale(1); opacity: 1; }
-      70%  { transform: scale(2); opacity: 1; }  /* zoom normal */
-      100% { transform: scale(5); opacity: 0; }  /* se desvanece al final */
+      70%  { transform: scale(2); opacity: 1; }
+      100% { transform: scale(5); opacity: 0; }
     }
 
-    /* Contenido principal */
+    /* El contenedor del intro también se desvanece */
+    @keyframes fadeOut {
+      0%   { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    /* Contenido principal visible siempre */
     #main {
-      display: none;
       text-align: center;
       color: white;
       margin-top: 20px;
+      position: relative;
+      z-index: 1;
     }
 
     h1 img, p img {
@@ -67,12 +75,12 @@
 </head>
 <body>
 
-  <!-- Intro con GIF -->
+  <!-- Intro que se desvanece -->
   <div id="intro">
     <img src="https://el.phncdn.com/pics/gifs/014/844/552/(m=ldpwiqacxtE_Ai)(mh=ht9SNtCdtrF2Smov)14844552b.gif" alt="Intro">
   </div>
 
-  <!-- Contenido principal -->
+  <!-- Contenido principal (siempre está detrás) -->
   <div id="main">
     <h1>
       Bienvenido al Mundo Gooner
@@ -87,18 +95,14 @@
   <script>
     window.addEventListener('load', () => {
       const intro = document.getElementById('intro');
-      const main = document.getElementById('main');
-
       if(!sessionStorage.getItem('introShown')){
         sessionStorage.setItem('introShown', 'true');
 
         setTimeout(() => {
-          intro.style.display = 'none';
-          main.style.display = 'block';
-        }, 9000); // dura lo mismo que la animación
+          intro.style.display = 'none'; // se elimina después de la animación
+        }, 9000);
       } else {
         intro.style.display = 'none';
-        main.style.display = 'block';
       }
     });
   </script>
