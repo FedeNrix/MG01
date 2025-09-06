@@ -23,7 +23,7 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* GIF de entrada con zoom */
+    /* Intro */
     #intro {
       position: fixed;
       inset: 0;
@@ -34,17 +34,20 @@
       z-index: 9999;
     }
     #intro img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      animation: introZoom 9s linear forwards; /* duración 9s */
-    }
-    @keyframes introZoom {
-      0% { transform: scale(1); }
-      100% { transform: scale(5); } /* escala máxima al final */
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* el GIF cubre toda la pantalla */
+      animation: introAnim 9s linear forwards;
     }
 
-    /* Contenido principal oculto hasta terminar la intro */
+    /* Animación: zoom + fade out */
+    @keyframes introAnim {
+      0%   { transform: scale(1); opacity: 1; }
+      70%  { transform: scale(2); opacity: 1; }  /* zoom normal */
+      100% { transform: scale(5); opacity: 0; }  /* se desvanece al final */
+    }
+
+    /* Contenido principal */
     #main {
       display: none;
       text-align: center;
@@ -64,7 +67,7 @@
 </head>
 <body>
 
-  <!-- GIF de entrada con zoom -->
+  <!-- Intro con GIF -->
   <div id="intro">
     <img src="https://el.phncdn.com/pics/gifs/014/844/552/(m=ldpwiqacxtE_Ai)(mh=ht9SNtCdtrF2Smov)14844552b.gif" alt="Intro">
   </div>
@@ -86,21 +89,14 @@
       const intro = document.getElementById('intro');
       const main = document.getElementById('main');
 
-      // Mostrar el intro solo si no se ha mostrado en esta sesión
       if(!sessionStorage.getItem('introShown')){
         sessionStorage.setItem('introShown', 'true');
-
-        const introGif = document.querySelector('#intro img');
-        introGif.style.animation = 'none'; // reiniciar animación
-        introGif.offsetHeight; // fuerza reflow
-        introGif.style.animation = 'introZoom 9s linear forwards';
 
         setTimeout(() => {
           intro.style.display = 'none';
           main.style.display = 'block';
-        }, 9000);
+        }, 9000); // dura lo mismo que la animación
       } else {
-        // Si ya se mostró en esta sesión, ocultar intro y mostrar main inmediatamente
         intro.style.display = 'none';
         main.style.display = 'block';
       }
