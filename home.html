@@ -41,12 +41,12 @@
       animation: zoomFade 9s ease-in-out forwards;
     }
 
-    /* Zoom lento hasta 7s, luego fade */
+    /* Zoom lento hasta 7s, luego zoom + desplazamiento hacia arriba */
     @keyframes zoomFade {
-      0%   { transform: scale(1);   opacity: 1; }
-      50%  { transform: scale(2);   opacity: 1; }
-      78%  { transform: scale(3);   opacity: 1; }   /* hasta ~7s */
-      100% { transform: scale(3.5); opacity: 0; }   /* de 7s a 9s */
+      0%   { transform: scale(1) translateY(0);    opacity: 1; }
+      50%  { transform: scale(2) translateY(0);    opacity: 1; }
+      78%  { transform: scale(3) translateY(0);    opacity: 1; }   /* hasta ~7s solo zoom */
+      100% { transform: scale(3.5) translateY(-50px); opacity: 0; } /* segundo zoom + subida */
     }
 
     @keyframes fadeOut {
