@@ -41,16 +41,16 @@
       animation: zoomFade 9s linear forwards;
     }
 
-    /* Animación zoom + fade */
+    /* Animación zoom hasta 7s, luego fade */
     @keyframes zoomFade {
       0%   { transform: scale(1);   opacity: 1; }
-      75%  { transform: scale(4);   opacity: 1; }   /* hasta el 75% solo zoom */
-      100% { transform: scale(5);   opacity: 0; }   /* últimos segundos fade */
+      78%  { transform: scale(4);   opacity: 1; }   /* solo zoom hasta el segundo 7 */
+      100% { transform: scale(5);   opacity: 0; }   /* fade de 7s a 9s */
     }
 
     @keyframes fadeOut {
       0%   { opacity: 1; }
-      75%  { opacity: 1; }  /* mantiene opaco hasta el 75% */
+      78%  { opacity: 1; }  /* mantiene opaco hasta el 7s */
       100% { opacity: 0; }
     }
 
