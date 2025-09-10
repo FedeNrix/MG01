@@ -44,7 +44,7 @@
       100% { opacity: 0; }
     }
 
-    /* Contenedor del bucle infinito */
+    /* Loop infinito con imagen */
     #loop-container {
       position: absolute;
       top: 0;
@@ -52,13 +52,13 @@
       width: 200%;
       height: 100%;
       display: flex;
-      animation: scrollLeft 20s linear infinite;
+      animation: scrollLeft 30s linear infinite;
     }
 
-    iframe {
+    #loop-container img {
       width: 50%;
       height: 100%;
-      border: none;
+      object-fit: cover;
     }
 
     @keyframes scrollLeft {
@@ -74,10 +74,10 @@
     <img src="https://el.phncdn.com/pics/gifs/014/844/552/(m=ldpwiqacxtE_Ai)(mh=ht9SNtCdtrF2Smov)14844552b.gif" alt="Intro">
   </div>
 
-  <!-- Contenido principal con loop infinito -->
+  <!-- Imagen en loop infinito -->
   <div id="loop-container">
-    <iframe src="https://drive.google.com/file/d/1qLUg8I35T0svP6fCTEsTfN5uqGZAy51X/preview" allow="autoplay"></iframe>
-    <iframe src="https://drive.google.com/file/d/1qLUg8I35T0svP6fCTEsTfN5uqGZAy51X/preview" allow="autoplay"></iframe>
+    <img src="https://i.postimg.cc/T3Xq6WKY/Angela-Violet-Nice-Wallpaper.jpg" alt="Wallpaper">
+    <img src="https://i.postimg.cc/T3Xq6WKY/Angela-Violet-Nice-Wallpaper.jpg" alt="Wallpaper duplicado">
   </div>
 
   <script>
