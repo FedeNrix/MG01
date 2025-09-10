@@ -5,24 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>♂️GoonMode♀️</title>
   <style>
-    html, body { 
-      height: 100%; 
-      margin: 0; 
-      font-family: Arial, sans-serif; 
-      overflow: hidden; /* evita scroll */
-    }
-
-    /* Fondo animado con tu imagen */
+    html, body { height: 100%; margin: 0; font-family: Arial, sans-serif; }
     body {
-      background: url("imagenes/Angela Violet Nice Wallpaper.jpg") repeat-x;
-      background-size: cover; 
-      animation: scrollBg 30s linear infinite;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet);
+      background-size: 1400% 1400%;
+      animation: gradientBG 10s ease infinite;
+      overflow-x: hidden;
     }
-
-    /* Animación de desplazamiento */
-    @keyframes scrollBg {
-      0% { background-position: 0 0; }
-      100% { background-position: -3840px 0; } /* mismo ancho que tu imagen */
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     /* Intro encima del contenido */
@@ -43,20 +41,22 @@
       animation: zoomFade 9s ease-in-out forwards;
     }
 
+    /* Zoom (0–7s) y luego zoom+subida (7–9s) con fade */
     @keyframes zoomFade {
       0%   { transform: scale(1) translateY(0);      opacity: 1; }
       50%  { transform: scale(2) translateY(0);      opacity: 1; }
-      78%  { transform: scale(3) translateY(0);      opacity: 1; }
-      90%  { transform: scale(3.3) translateY(-30px); opacity: 0.5; }
-      100% { transform: scale(3.5) translateY(-60px); opacity: 0; }
+      78%  { transform: scale(3) translateY(0);      opacity: 1; }     /* fin del primer zoom (~7s) */
+      90%  { transform: scale(3.3) translateY(-30px); opacity: 0.5; }  /* segundo zoom + subida en progreso */
+      100% { transform: scale(3.5) translateY(-60px); opacity: 0; }    /* fin: más zoom + más subida */
     }
 
     @keyframes fadeOut {
-      0%, 78% { opacity: 1; }
+      0%   { opacity: 1; }
+      78%  { opacity: 1; }
       100% { opacity: 0; }
     }
 
-    /* Contenido principal encima del fondo */
+    /* Contenido detrás */
     #main {
       text-align: center;
       color: white;
@@ -65,24 +65,33 @@
       z-index: 1;
     }
 
-    h1, p {
-      background: rgba(0,0,0,0.5);
-      padding: 10px;
-      border-radius: 10px;
+    h1 img, p img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 10px auto;
+      -webkit-user-select: none;
+      background-color: hsl(0, 0%, 90%);
     }
   </style>
 </head>
 <body>
 
-  <!-- Intro -->
+  <!-- Intro que hace zoom y en el segundo tramo sube + se desvanece -->
   <div id="intro">
     <img src="https://el.phncdn.com/pics/gifs/014/844/552/(m=ldpwiqacxtE_Ai)(mh=ht9SNtCdtrF2Smov)14844552b.gif" alt="Intro">
   </div>
 
   <!-- Contenido principal -->
   <div id="main">
-    <h1>Bienvenido al Mundo Gooner</h1>
-    <p>Texto o contenido aquí (encima del fondo animado)</p>
+    <h1>
+      Bienvenido al Mundo Gooner
+      <img src="https://i.redd.it/if8x2lq0d58d1.gif" alt="GIF principal">
+    </h1>
+
+    <p>
+      <img src="https://imagex1.sx.cdn.live/images/pinporn/2018/10/19/20108579.gif?width=460" alt="GIF secundario">
+    </p>
   </div>
 
   <script>
