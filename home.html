@@ -12,72 +12,48 @@
       background: black;
     }
 
-    /* Intro encima del contenido */
+    /* Imagen fija */
+    #main-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Intro encima de la imagen */
     #intro {
       position: fixed;
       inset: 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: black;
+      background: transparent; /* fondo transparente */
       z-index: 9999;
-      animation: fadeOut 9s ease-in-out forwards;
+      animation: fadeOut 2s ease-in-out forwards;
+      animation-delay: 9s; /* empieza después de 9s */
     }
+
     #intro img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      animation: zoomFade 9s ease-in-out forwards;
-    }
-
-    @keyframes zoomFade {
-      0%   { transform: scale(1) translateY(0);      opacity: 1; }
-      50%  { transform: scale(2) translateY(0);      opacity: 1; }
-      78%  { transform: scale(3) translateY(0);      opacity: 1; }
-      90%  { transform: scale(3.3) translateY(-30px); opacity: 0.5; }
-      100% { transform: scale(3.5) translateY(-60px); opacity: 0; }
+      object-fit: cover; /* se ve todo el GIF */
+      display: block;
     }
 
     @keyframes fadeOut {
-      0%   { opacity: 1; }
-      78%  { opacity: 1; }
-      100% { opacity: 0; }
-    }
-
-    /* Loop infinito con imagen */
-    #loop-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 200%;
-      height: 100%;
-      display: flex;
-      animation: scrollLeft 10s linear infinite; /* cambié de 30s a 10s */
-    }
-
-    #loop-container img {
-      width: 50%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    @keyframes scrollLeft {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+      from { opacity: 1; }
+      to   { opacity: 0; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Intro -->
+  <!-- Imagen fija detrás -->
+  <img id="main-image" src="https://i.postimg.cc/T3Xq6WKY/Angela-Violet-Nice-Wallpaper.jpg" alt="Wallpaper">
+
+  <!-- Intro transparente encima -->
   <div id="intro">
     <img src="https://el.phncdn.com/pics/gifs/014/844/552/(m=ldpwiqacxtE_Ai)(mh=ht9SNtCdtrF2Smov)14844552b.gif" alt="Intro">
-  </div>
-
-  <!-- Imagen en loop infinito -->
-  <div id="loop-container">
-    <img src="https://i.postimg.cc/T3Xq6WKY/Angela-Violet-Nice-Wallpaper.jpg" alt="Wallpaper">
-    <img src="https://i.postimg.cc/T3Xq6WKY/Angela-Violet-Nice-Wallpaper.jpg" alt="Wallpaper duplicado">
   </div>
 
   <script>
@@ -85,7 +61,8 @@
       const intro = document.getElementById('intro');
       if(!sessionStorage.getItem('introShown')){
         sessionStorage.setItem('introShown', 'true');
-        setTimeout(() => { intro.style.display = 'none'; }, 9000);
+        // ocultar intro tras fade
+        setTimeout(() => { intro.style.display = 'none'; }, 11000); // 9s de espera + 2s de fade
       } else {
         intro.style.display = 'none';
       }
